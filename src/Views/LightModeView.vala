@@ -1,5 +1,7 @@
 public class Switcher.Views.LightModeView : Gtk.Box {
 
+    private GLib.Settings settings;
+
     public LightModeView () {
         Object(
             orientation: Gtk.Orientation.VERTICAL
@@ -7,12 +9,15 @@ public class Switcher.Views.LightModeView : Gtk.Box {
     }
     
     construct {
+
+        settings = new GLib.Settings ("com.github.jeysonflores.switcher");
+
         var title_label = new Gtk.Label ("Select a default wallpaper for Light Mode") {
             margin_top = 20
         };
         title_label.get_style_context ().add_class ("t1");
         
-        var pixbuf = new Gdk.Pixbuf.from_file_at_size ("/home/jeyson/Imágenes/a.jpg", 400, 300);
+        var pixbuf = new Gdk.Pixbuf.from_file_at_size (settings.get_string ("light-mode-wallpaper"), 400, 300);
 
         var image = new Gtk.Image.from_pixbuf (pixbuf) {
             margin_top = 20,
@@ -26,6 +31,28 @@ public class Switcher.Views.LightModeView : Gtk.Box {
             halign = Gtk.Align.CENTER
         };
         select_wallpaper.get_style_context ().add_class ("suggested-action");
+
+        select_wallpaper.clicked.connect(() => {
+            var dialog = new Gtk.FileChooserNative ("Select an image", null, Gtk.FileChooserAction.OPEN, "Select", "Cancel");
+
+            var filter = new Gtk.FileFilter ();
+            filter.add_pattern ("*.jpg");
+            filter.add_pattern ("*.jpeg");
+            filter.add_pattern ("*.png");
+            filter.add_pattern ("*.svg");
+
+            dialog.add_filter (filter);
+
+            var response = dialog.run ();
+
+            if (response == Gtk.ResponseType.ACCEPT) {
+                settings.set_string ("light-mode-wallpaper", dialog.get_filename ());
+                
+                var new_pixbuf = new Gdk.Pixbuf.from_file_at_size (dialog.get_filename (), 400, 300);
+
+                image.set_from_pixbuf (new_pixbuf);
+            }
+        });
 
         pack_start (title_label, false, false, 0);
         pack_start (image, false, false, 0);

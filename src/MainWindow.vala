@@ -12,6 +12,8 @@ public class Switcher.MainWindow: Hdy.Window {
 
         Hdy.init ();
 
+        settings = new GLib.Settings ("com.github.jeysonflores.switcher");
+
         var icon_mode = new Granite.Widgets.ModeButton ();
         icon_mode.append_icon ("ionicons-sun-symbolic", Gtk.IconSize.BUTTON);
         icon_mode.append_icon ("ionicons-moon-symbolic", Gtk.IconSize.BUTTON);
@@ -77,8 +79,6 @@ public class Switcher.MainWindow: Hdy.Window {
 
         icon_mode.set_active (0);
 
-        settings = new GLib.Settings ("com.github.jeysonflores.switcher");
-
         move (settings.get_int ("pos-x"), settings.get_int ("pos-y"));
         resize (settings.get_int ("window-width"), settings.get_int ("window-height"));
 
@@ -103,6 +103,8 @@ public class Switcher.MainWindow: Hdy.Window {
 
         settings.set_int ("pos-x", root_x);
         settings.set_int ("pos-y", root_y);
+
+        print(settings.get_string("dark-mode-wallpaper"));
         
         return false;
     }

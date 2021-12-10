@@ -26,5 +26,17 @@
            <summary>Window height</summary>
            <description>The saved height of the main window</description>
        </key>
+
+       <key name="dark-mode-wallpaper" type="s">
+            <default>"400"</default>
+            <summary>Path of the wallpaper for Dark Mode</summary>
+            <description>The path of the wallpaper for Dark Mode</description>
+        </key>
+
+        <key name="light-mode-wallpaper" type="s">
+            <default>"400"</default>
+            <summary>Path of the wallpaper for Light Mode</summary>
+            <description>The path of the wallpaper for Light Mode</description>
+        </key>
     </schema>
 </schemalist>
