@@ -37,8 +37,8 @@ public class Switcher.MainWindow: Hdy.Window {
             transition_type = Hdy.DeckTransitionType.SLIDE
         };
 
-        var light_mode_view = new Switcher.Views.LightModeView ();
-        var dark_mode_view = new Switcher.Views.DarkModeView ();
+        var light_mode_view = new Switcher.Views.ModeView (false);
+        var dark_mode_view = new Switcher.Views.ModeView (true);
 
         deck.add (light_mode_view);
         deck.add (dark_mode_view);

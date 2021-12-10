@@ -1,10 +1,12 @@
-public class Switcher.Views.LightModeView : Gtk.Box {
+public class Switcher.Views.ModeView : Gtk.Box {
 
     private GLib.Settings settings;
+    public bool dark_mode { get; construct; }
 
-    public LightModeView () {
+    public ModeView (bool dark_mode) {
         Object(
-            orientation: Gtk.Orientation.VERTICAL
+            orientation: Gtk.Orientation.VERTICAL,
+            dark_mode: dark_mode
         );
     }
     
@@ -12,15 +14,25 @@ public class Switcher.Views.LightModeView : Gtk.Box {
 
         settings = new GLib.Settings ("com.github.jeysonflores.switcher");
 
-        var title_label = new Gtk.Label ("Select a default wallpaper for Light Mode") {
-            margin_top = 20
-        };
+        Gtk.Label? title_label = null;
+        
+        if (dark_mode) {
+            title_label = new Gtk.Label ("Select a default wallpaper for Dark Mode") {
+                margin_top = 20
+            };
+        } else {
+            title_label = new Gtk.Label ("Select a default wallpaper for Light Mode") {
+                margin_top = 20
+            };
+        }
         title_label.get_style_context ().add_class ("t1");
+
+        var key = dark_mode ? "dark-mode-wallpaper" : "light-mode-wallpaper";
         
         Gdk.Pixbuf? pixbuf = null;
 
-        if (FileUtils.test (settings.get_string ("dark-mode-wallpaper"), FileTest.EXISTS)) {
-            pixbuf = new Gdk.Pixbuf.from_file_at_size (settings.get_string ("light-mode-wallpaper"), 400, 300);
+        if (FileUtils.test (settings.get_string (key), FileTest.EXISTS)) {
+            pixbuf = new Gdk.Pixbuf.from_file_at_size (settings.get_string (key), 400, 300);
         } else {
             // change for default image of /NOT SELECTED/
             pixbuf = new Gdk.Pixbuf.from_file_at_size (settings.get_string ("dark-mode-wallpaper"), 400, 300);
@@ -53,7 +65,7 @@ public class Switcher.Views.LightModeView : Gtk.Box {
             var response = dialog.run ();
 
             if (response == Gtk.ResponseType.ACCEPT) {
-                settings.set_string ("light-mode-wallpaper", dialog.get_filename ());
+                settings.set_string (key, dialog.get_filename ());
                 
                 var new_pixbuf = new Gdk.Pixbuf.from_file_at_size (dialog.get_filename (), 400, 300);
 
