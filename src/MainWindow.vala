@@ -41,18 +41,16 @@ public class Switcher.MainWindow: Hdy.Window {
         deck.add (light_mode_view);
         deck.add (dark_mode_view);
 
-        var gtk_settings = Gtk.Settings.get_default ();
-
         deck.notify["transition-running"].connect (() => {
             if (!deck.transition_running) {
                 if(deck.visible_child == light_mode_view) {
                     icon_mode.set_active (0);
-                    gtk_settings.gtk_application_prefer_dark_theme = (false);
+                    set_dark_mode (false);
                 }
 
                 if(deck.visible_child == dark_mode_view) {
                     icon_mode.set_active (1);
-                    gtk_settings.gtk_application_prefer_dark_theme = (true);
+                    set_dark_mode (true);
                 }
             }
         });
@@ -60,12 +58,12 @@ public class Switcher.MainWindow: Hdy.Window {
         icon_mode.mode_changed.connect ((widget) => {
             if(icon_mode.selected == 0) {
                 deck.visible_child = light_mode_view;
-                gtk_settings.gtk_application_prefer_dark_theme = (false);
+                set_dark_mode (false);
             }
 
             if(icon_mode.selected == 1) {
                 deck.visible_child = dark_mode_view;
-                gtk_settings.gtk_application_prefer_dark_theme = (true);
+                set_dark_mode (true);
             }
         });
 
@@ -107,5 +105,22 @@ public class Switcher.MainWindow: Hdy.Window {
         settings.set_int ("pos-y", root_y);
         
         return false;
+    }
+
+    private void set_dark_mode (bool flag) {
+        var css_provider = new Gtk.CssProvider ();
+        var gtk_settings = Gtk.Settings.get_default ();
+
+        if (flag) {
+            gtk_settings.gtk_application_prefer_dark_theme = (true);
+            css_provider.load_from_resource ("/com/github/jeysonflores/switcher/style-dark.css");
+        } else {
+            gtk_settings.gtk_application_prefer_dark_theme = (false);
+            css_provider.load_from_resource ("/com/github/jeysonflores/switcher/style.css");
+        }
+
+        Gtk.StyleContext.add_provider_for_screen (
+            Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        );
     }
 }
