@@ -1,0 +1,21 @@
+.toggle:dir(ltr){
+	color: #ca3535;
+    background: #333333;
+}
+
+.toggle:checked {
+	border-color: #2d2d2d;
+	background: #2d2d2d;
+	color: rgb(22, 22, 22);
+}
+
+.toggle {
+	margin-left: 3px;
+	border: 0px;
+	color: #a83232;
+    background: #333333;
+}
+
+.background-mode {
+	background: #333333;
+}

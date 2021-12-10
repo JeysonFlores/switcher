@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Switcher
+Comment=Change your wallpapers according to your desktop mode.
+Comment[es]=Cambia tu fondo de escritorio según tu modo de escritorio.
+Exec=com.github.jeysonflores.switcher
+Icon=com.github.jeysonflores.switcher
+Keywords=switcher;mode;
+Terminal=false
+Type=Application
+Categories=Graphics;Utility;

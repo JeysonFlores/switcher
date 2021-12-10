@@ -1,0 +1,29 @@
+{
+    "buttons": [
+        {
+            "name": "Run Local",
+            "script": "com.github.jeysonflores.switcher",
+            "description": "Run project locally"
+        },
+        {
+            "name": "Build Local",
+            "script": "meson builddir && cd builddir && sudo ninja install && cd .. && com.github.jeysonflores.switcher",
+            "description": "Build project locally "
+        },
+        {
+            "name": "Run Flatpak",
+            "script": "flatpak run com.github.jeysonflores.switcher",
+            "description": "Run project in flatpak"
+        },
+        {
+            "name": "Build Flatpak",
+            "script": "flatpak-builder build com.github.jeysonflores.switcher.json --user --install --force-clean",
+            "description": "Build project as flatpak"
+        },
+        {
+            "name": "Interactive Debug",
+            "script": "GTK_DEBUG=interactive com.github.jeysonflores.switcher",
+            "description": "Runs project locally with GTK Inspector"
+        }
+    ]
+}
