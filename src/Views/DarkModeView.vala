@@ -17,7 +17,14 @@ public class Switcher.Views.DarkModeView : Gtk.Box {
         };
         title_label.get_style_context ().add_class ("t1");
         
-        var pixbuf = new Gdk.Pixbuf.from_file_at_size (settings.get_string ("dark-mode-wallpaper"), 400, 300);
+        Gdk.Pixbuf? pixbuf = null;
+
+        if (FileUtils.test (settings.get_string ("dark-mode-wallpaper"), FileTest.EXISTS)) {
+            pixbuf = new Gdk.Pixbuf.from_file_at_size (settings.get_string ("dark-mode-wallpaper"), 400, 300);
+        } else {
+            // change for default image of /NOT SELECTED/
+            pixbuf = new Gdk.Pixbuf.from_file_at_size (settings.get_string ("light-mode-wallpaper"), 400, 300);
+        }
 
         var image = new Gtk.Image.from_pixbuf (pixbuf) {
             margin_top = 20,

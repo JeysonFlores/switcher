@@ -26,18 +26,22 @@ namespace Switcher {
             else
                 print ("");
 
-            granite_settings.notify["prefers-color-scheme"].connect (() => {
-                if (granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK) {
-                    File file = File.new_for_path (settings.get_string ("dark-mode-wallpaper"));
+            print (GLib.Environment.get_user_config_dir ());
 
-                    App.Contractor.set_wallpaper_by_contract (file);
-                }
-                else{
-                    File file = File.new_for_path (settings.get_string ("light-mode-wallpaper"));
+            granite_settings.notify["prefers-color-scheme"].connect (() => {
+
+                var wallpaper_location = granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK ? settings.get_string ("dark-mode-wallpaper") : settings.get_string ("light-mode-wallpaper");
+
+                if (FileUtils.test (wallpaper_location, FileTest.EXISTS)) {
+                    File file = File.new_for_path (wallpaper_location);
 
                     App.Contractor.set_wallpaper_by_contract (file);
                 }
             });
+        }
+
+        private void switch_wallpaper (bool dark) {
+            var settings = new GLib.Settings ("com.github.jeysonflores.switcher");
         }
                 
         public static int main (string[] args) {
