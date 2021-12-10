@@ -103,8 +103,6 @@ public class Switcher.MainWindow: Hdy.Window {
 
         settings.set_int ("pos-x", root_x);
         settings.set_int ("pos-y", root_y);
-
-        print(settings.get_string("dark-mode-wallpaper"));
         
         return false;
     }
