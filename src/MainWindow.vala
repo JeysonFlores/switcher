@@ -92,19 +92,27 @@ public class Switcher.MainWindow: Hdy.Window {
 
     public override bool delete_event (Gdk.EventAny event) {   
 
-        int root_x, root_y;
-        get_position (out root_x, out root_y);
+        if (settings.get_boolean ("persistent")) {
+            hide ();
+            
+            application.hold ();
+            
+            return true;
+        } else {
+            int root_x, root_y;
+            get_position (out root_x, out root_y);
 
-        int width, height;
-        get_size (out width, out height);
+            int width, height;
+            get_size (out width, out height);
 
-        settings.set_int ("window-width", width);
-        settings.set_int ("window-height", height);
+            settings.set_int ("window-width", width);
+            settings.set_int ("window-height", height);
 
-        settings.set_int ("pos-x", root_x);
-        settings.set_int ("pos-y", root_y);
-        
-        return false;
+            settings.set_int ("pos-x", root_x);
+            settings.set_int ("pos-y", root_y);
+            
+            return false;
+        }
     }
 
     private void set_dark_mode (bool flag) {

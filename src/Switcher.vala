@@ -10,7 +10,11 @@ namespace Switcher {
         protected override void activate () {
             var settings = new GLib.Settings ("com.github.jeysonflores.switcher");
 
-            var app_window = new MainWindow (this);
+            var app_window = get_active_window ();
+
+            if (app_window == null) {
+                app_window = new MainWindow (this);
+            }
             
             app_window.show_all ();
 
