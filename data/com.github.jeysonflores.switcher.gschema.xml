@@ -28,27 +28,27 @@
        </key>
 
        <key name="dark-mode-wallpaper" type="s">
-            <default>"400"</default>
+            <default>""</default>
             <summary>Path of the wallpaper for Dark Mode</summary>
             <description>The path of the wallpaper for Dark Mode</description>
         </key>
 
         <key name="light-mode-wallpaper" type="s">
-            <default>"400"</default>
+            <default>""</default>
             <summary>Path of the wallpaper for Light Mode</summary>
             <description>The path of the wallpaper for Light Mode</description>
         </key>
 
         <key name="run-at-startup" type="b">
-			<default>false</default>
-			<summary>Wheter to run or not at startup</summary>
-			<description>Variable to decide if it runs at startup or not.</description>
-		</key>
+            <default>false</default>
+            <summary>Wheter to run or not at startup</summary>
+            <description>Variable to decide if it runs at startup or not.</description>
+        </key>
 
         <key name="persistent" type="b">
-			<default>true</default>
-			<summary>The app will be working when closed</summary>
-			<description>Variable to decide if the app will still work after the app closes.</description>
-		</key>
+            <default>true</default>
+            <summary>The app will be working when closed</summary>
+            <description>Variable to decide if the app will still work after the app closes.</description>
+        </key>
     </schema>
 </schemalist>
