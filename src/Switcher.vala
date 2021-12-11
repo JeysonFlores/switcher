@@ -42,10 +42,6 @@ namespace Switcher {
                 }
             });
         }
-
-        private void switch_wallpaper (bool dark) {
-            var settings = new GLib.Settings ("com.github.jeysonflores.switcher");
-        }
                 
         public static int main (string[] args) {
             

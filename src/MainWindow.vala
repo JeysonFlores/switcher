@@ -104,11 +104,6 @@ public class Switcher.MainWindow: Hdy.Window {
         resize (settings.get_int ("window-width"), settings.get_int ("window-height"));
 
         add (grid);
-        /* 
-        File file = File.new_for_path ("/home/jeyson/Imágenes/a.jpg");
-        var contractor = App.Contractor.get_contract ();
-
-        App.Contractor.set_wallpaper_by_contract (file);*/
     }
 
     public override bool delete_event (Gdk.EventAny event) {   
