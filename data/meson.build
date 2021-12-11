@@ -1,5 +1,5 @@
 icon_sizes = ['32', '48', '64', '128']
-symbolic_icons = ['ionicons-moon', 'ionicons-sun', 'ionicons-eyedrop']
+symbolic_icons = ['ionicons-moon', 'ionicons-sun', 'ionicons-cog']
 
 foreach i : icon_sizes
     install_data(

@@ -41,7 +41,7 @@
 
         <key name="run-at-startup" type="b">
             <default>false</default>
-            <summary>Wheter to run or not at startup</summary>
+            <summary>Set if run or not at startup</summary>
             <description>Variable to decide if it runs at startup or not.</description>
         </key>
 

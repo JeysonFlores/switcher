@@ -32,6 +32,7 @@ executable(
     'src/Switcher.vala',
     'src/MainWindow.vala',
     'src/Views/ModeView.vala',
+    'src/Widgets/SettingsDialog.vala',
     'src/Utils/ContractorManager.vala',
     asresources,
     c_args: c_args,

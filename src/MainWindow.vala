@@ -14,13 +14,34 @@ public class Switcher.MainWindow: Hdy.Window {
 
         settings = new GLib.Settings ("com.github.jeysonflores.switcher");
 
-        var icon_mode = new Granite.Widgets.ModeButton ();
+        var icon_mode = new Granite.Widgets.ModeButton () {
+            margin_left = 120
+        };
         icon_mode.append_icon ("ionicons-sun-symbolic", Gtk.IconSize.BUTTON);
         icon_mode.append_icon ("ionicons-moon-symbolic", Gtk.IconSize.BUTTON);
 
+        var settings_button = new Gtk.Button.from_icon_name ("emblem-system-symbolic", Gtk.IconSize.BUTTON) {
+            can_focus = false,
+            margin_left = 60
+        };
+        settings_button.get_style_context ().add_class ("toggle");
+        settings_button.get_style_context ().remove_class ("image-but");
+
+        settings_button.clicked.connect(() => {
+            var dialog = new Switcher.Widgets.SettingsDialog (this);
+            dialog.show_all ();
+            dialog.add_button ("Close", Gtk.ResponseType.ACCEPT);
+            dialog.response.connect ((response_id) => {
+                dialog.destroy ();
+            });
+        });
+
+        var header_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        header_box.pack_start (icon_mode, false, false, 0);
+        header_box.pack_start (settings_button, false, false, 0);
 
         var header = new Hdy.HeaderBar () {
-            custom_title = icon_mode,
+            custom_title = header_box,
             decoration_layout = "close:",
             has_subtitle = false,
             show_close_button = true,
