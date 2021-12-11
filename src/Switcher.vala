@@ -14,6 +14,9 @@ namespace Switcher {
 
             if (app_window == null) {
                 app_window = new MainWindow (this);
+            } else {
+                this.release ();
+                app_window.present ();
             }
             
             app_window.show_all ();
