@@ -60,8 +60,6 @@ namespace Switcher {
                 ref no_gui_mode, "Run without window", null
             };
 
-            // We have to make an extra copy of the array, since .parse assumes
-            // that it can remove strings from the array without freeing them.
             string[] args = command_line.get_arguments ();
             string[] _args = new string[args.length];
             for (int i = 0; i < args.length; i++) {
@@ -89,10 +87,6 @@ namespace Switcher {
         public static int main (string[] args) {
             
             var app = new Application ();
-
-            if (args.length > 1 && args[1] == "--hola") {
-                app.no_gui = true;
-            }
             
             return app.run(args);   
         }

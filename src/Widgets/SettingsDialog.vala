@@ -43,7 +43,6 @@ public class Switcher.Widgets.SettingsDialog : Granite.Dialog {
             var dest_file = GLib.File.new_for_path (dest_path);
             try {
                 desktop_file.copy (dest_file, GLib.FileCopyFlags.OVERWRITE);
-                stdout.printf ("\nCopied desktop file at: %s", dest_path);
             } catch (Error e) {
                 warning ("Error making copy of desktop file for autostart: %s", e.message);
             }

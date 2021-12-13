@@ -5,7 +5,7 @@ namespace App.Contractor {
             var contract = get_contract ();
             contract.execute_with_file (file);
         } catch (GLib.Error e) {
-            print ("Falló xD");
+            print ("error: %s\n", e.message);
         }
     }
 
