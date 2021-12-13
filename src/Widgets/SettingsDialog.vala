@@ -28,7 +28,35 @@ public class Switcher.Widgets.SettingsDialog : Granite.Dialog {
         };
 
         run_at_startup.notify["active"].connect(() => {
+            
             settings.set_boolean ("run-at-startup", run_at_startup.get_active ());
+
+            var desktop_file_name = "com.github.jeysonflores.switcher" + ".desktop";
+            var desktop_file_path = new GLib.DesktopAppInfo (desktop_file_name).filename;
+            var desktop_file = GLib.File.new_for_path (desktop_file_path);
+            var dest_path = GLib.Path.build_path (
+                GLib.Path.DIR_SEPARATOR_S,
+                GLib.Environment.get_user_config_dir (),
+                "autostart",
+                desktop_file_name
+            );
+            var dest_file = GLib.File.new_for_path (dest_path);
+            try {
+                desktop_file.copy (dest_file, GLib.FileCopyFlags.OVERWRITE);
+                stdout.printf ("\nCopied desktop file at: %s", dest_path);
+            } catch (Error e) {
+                warning ("Error making copy of desktop file for autostart: %s", e.message);
+            }
+
+            var keyfile = new GLib.KeyFile ();
+            try {
+                keyfile.load_from_file (dest_path, GLib.KeyFileFlags.NONE);
+                keyfile.set_boolean ("Desktop Entry", "X-GNOME-Autostart-enabled", run_at_startup.get_active ());
+                keyfile.set_string ("Desktop Entry", "Exec", "com.github.jeysonflores.switcher" + " --no-gui");
+                keyfile.save_to_file (dest_path);
+            } catch (Error e) {
+                warning ("Error enabling autostart: %s", e.message);
+            }
         });
 
         var persistent_mode_label = new Granite.HeaderLabel ("Persistent mode ");
