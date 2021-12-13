@@ -9,7 +9,7 @@ public class Switcher.Widgets.SettingsDialog : Granite.Dialog {
     }
     
     construct {
-        settings = new GLib.Settings ("com.github.jeysonflores.switcher");
+        this.settings = new GLib.Settings ("com.github.jeysonflores.switcher");
 
         var title = new Gtk.Label ("Settings") {
             halign = Gtk.Align.CENTER
@@ -23,13 +23,13 @@ public class Switcher.Widgets.SettingsDialog : Granite.Dialog {
         run_at_startup_description_label.get_style_context ().add_class ("description-label");
 
         var run_at_startup = new Gtk.Switch () {
-            active = settings.get_boolean ("run-at-startup"),
+            active = this.settings.get_boolean ("run-at-startup"),
             halign = Gtk.Align.START
         };
 
         run_at_startup.notify["active"].connect(() => {
             
-            settings.set_boolean ("run-at-startup", run_at_startup.get_active ());
+            this.settings.set_boolean ("run-at-startup", run_at_startup.get_active ());
 
             var desktop_file_name = "com.github.jeysonflores.switcher" + ".desktop";
             var desktop_file_path = new GLib.DesktopAppInfo (desktop_file_name).filename;
@@ -65,12 +65,12 @@ public class Switcher.Widgets.SettingsDialog : Granite.Dialog {
         persistent_mode_description_label.get_style_context ().add_class ("description-label");
 
         var persistent_mode = new Gtk.Switch () {
-            active = settings.get_boolean ("persistent"),
+            active = this.settings.get_boolean ("persistent"),
             halign = Gtk.Align.START
         };
 
         persistent_mode.notify["active"].connect(() => {
-            settings.set_boolean ("persistent", persistent_mode.get_active ());
+            this.settings.set_boolean ("persistent", persistent_mode.get_active ());
         });
 
         var layout = new Gtk.Grid () {
@@ -88,6 +88,6 @@ public class Switcher.Widgets.SettingsDialog : Granite.Dialog {
         layout.add (persistent_mode_description_label);
         layout.add (persistent_mode);
 
-        get_content_area ().add (layout);
+        this.get_content_area ().add (layout);
     }
 }

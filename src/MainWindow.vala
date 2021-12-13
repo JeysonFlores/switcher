@@ -12,7 +12,7 @@ public class Switcher.MainWindow: Hdy.Window {
 
         Hdy.init ();
 
-        settings = new GLib.Settings ("com.github.jeysonflores.switcher");
+        this.settings = new GLib.Settings ("com.github.jeysonflores.switcher");
 
         var icon_mode = new Granite.Widgets.ModeButton () {
             margin_left = 120
@@ -100,16 +100,16 @@ public class Switcher.MainWindow: Hdy.Window {
 
         icon_mode.set_active (0);
 
-        move (settings.get_int ("pos-x"), settings.get_int ("pos-y"));
-        resize (settings.get_int ("window-width"), settings.get_int ("window-height"));
+        this.move (settings.get_int ("pos-x"), settings.get_int ("pos-y"));
+        this.resize (settings.get_int ("window-width"), settings.get_int ("window-height"));
 
-        add (grid);
+        this.add (grid);
     }
 
     public override bool delete_event (Gdk.EventAny event) {   
 
         if (settings.get_boolean ("persistent")) {
-            hide ();
+            this.hide ();
             
             application.hold ();
             

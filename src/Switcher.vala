@@ -11,19 +11,19 @@ namespace Switcher {
         }
         
         protected override void activate () {
-            settings = new GLib.Settings ("com.github.jeysonflores.switcher");
+            this.settings = new GLib.Settings ("com.github.jeysonflores.switcher");
 
             var app_window = get_active_window ();
 
             if (app_window == null) {
                 app_window = new MainWindow (this);
-                if (no_gui) {
+                if (this.no_gui) {
                     this.hold ();
                 } else {
                     app_window.show_all ();
                 }
             } else {
-                if (!no_gui) {
+                if (!this.no_gui) {
                     this.release ();
                     app_window.show_all ();
                     app_window.present ();
@@ -31,7 +31,6 @@ namespace Switcher {
             }
 
             var granite_settings = Granite.Settings.get_default ();
-            var gtk_settings = Gtk.Settings.get_default ();
 
             if (granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK)
                 print ("");
@@ -77,9 +76,9 @@ namespace Switcher {
                 return 0;
             }
 
-            no_gui = no_gui_mode;
+            this.no_gui = no_gui_mode;
 
-            activate ();
+            this.activate ();
 
             return 0;
         }

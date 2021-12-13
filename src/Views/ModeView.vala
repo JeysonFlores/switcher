@@ -12,11 +12,11 @@ public class Switcher.Views.ModeView : Gtk.Box {
     
     construct {
 
-        settings = new GLib.Settings ("com.github.jeysonflores.switcher");
+        this.settings = new GLib.Settings ("com.github.jeysonflores.switcher");
 
         Gtk.Label? title_label = null;
         
-        if (dark_mode) {
+        if (this.dark_mode) {
             title_label = new Gtk.Label ("Select a default wallpaper for Dark Mode") {
                 margin_top = 20
             };
@@ -27,15 +27,15 @@ public class Switcher.Views.ModeView : Gtk.Box {
         }
         title_label.get_style_context ().add_class ("t1");
 
-        var key = dark_mode ? "dark-mode-wallpaper" : "light-mode-wallpaper";
+        var key = this.dark_mode ? "dark-mode-wallpaper" : "light-mode-wallpaper";
         
         Gdk.Pixbuf? pixbuf = null;
 
-        if (FileUtils.test (settings.get_string (key), FileTest.EXISTS)) {
-            pixbuf = new Gdk.Pixbuf.from_file_at_size (settings.get_string (key), 400, 300);
+        if (FileUtils.test (this.settings.get_string (key), FileTest.EXISTS)) {
+            pixbuf = new Gdk.Pixbuf.from_file_at_size (this.settings.get_string (key), 400, 300);
         } else {
             // change for default image of /NOT SELECTED/
-            pixbuf = new Gdk.Pixbuf.from_file_at_size (settings.get_string ("dark-mode-wallpaper"), 400, 300);
+            pixbuf = new Gdk.Pixbuf.from_file_at_size (this.settings.get_string ("dark-mode-wallpaper"), 400, 300);
         }
 
         var image = new Gtk.Image.from_pixbuf (pixbuf) {
@@ -65,7 +65,7 @@ public class Switcher.Views.ModeView : Gtk.Box {
             var response = dialog.run ();
 
             if (response == Gtk.ResponseType.ACCEPT) {
-                settings.set_string (key, dialog.get_filename ());
+                this.settings.set_string (key, dialog.get_filename ());
                 
                 var new_pixbuf = new Gdk.Pixbuf.from_file_at_size (dialog.get_filename (), 400, 300);
 
