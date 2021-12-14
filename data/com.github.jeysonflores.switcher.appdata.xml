@@ -76,8 +76,8 @@
 		<content_attribute id="money-gambling">none</content_attribute>
 	</content_rating>
 	<custom>
-		<value key="x-appcenter-color-primary">#efefef</value>
-		<value key="x-appcenter-color-primary-text">#508ff3</value>
+		<value key="x-appcenter-color-primary">#e3e3e3</value>
+		<value key="x-appcenter-color-primary-text">#333333</value>
 		<value key="x-appcenter-suggested-price">0</value>
 	</custom>
 	<kudos>
