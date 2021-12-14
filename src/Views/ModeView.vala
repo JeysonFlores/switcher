@@ -63,6 +63,24 @@ public class Switcher.Views.ModeView : Gtk.Box {
                 var new_pixbuf = new Gdk.Pixbuf.from_file_at_size (dialog.get_filename (), 400, 300);
 
                 image.set_from_pixbuf (new_pixbuf);
+
+                var granite_settings = Granite.Settings.get_default ();
+
+                if ((granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK) && this.dark_mode) {
+                    if (FileUtils.test (dialog.get_filename (), FileTest.EXISTS)) {
+                        File file = File.new_for_path (dialog.get_filename ());
+
+                        App.Contractor.set_wallpaper_by_contract (file);
+                     }   
+                }
+                
+                else if ((granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.NO_PREFERENCE ) && !this.dark_mode) {
+                    if (FileUtils.test (dialog.get_filename (), FileTest.EXISTS)) {
+                        File file = File.new_for_path (dialog.get_filename ());
+
+                        App.Contractor.set_wallpaper_by_contract (file);
+                     }   
+                }
             }
         });
 
