@@ -11,6 +11,7 @@ finish-args:
   - '--socket=fallback-x11'
   - '--socket=wayland'
   - '--system-talk-name=org.freedesktop.Accounts'
+  - '--talk-name=org.elementary.Contractor'
   - '--filesystem=~/.config/autostart'
   
 modules:
