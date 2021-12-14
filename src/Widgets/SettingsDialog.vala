@@ -36,7 +36,8 @@ public class Switcher.Widgets.SettingsDialog : Granite.Dialog {
             var desktop_file = GLib.File.new_for_path (desktop_file_path);
             var dest_path = GLib.Path.build_path (
                 GLib.Path.DIR_SEPARATOR_S,
-                GLib.Environment.get_user_config_dir (),
+                GLib.Environment.get_home_dir (),
+                ".config",
                 "autostart",
                 desktop_file_name
             );
@@ -51,7 +52,7 @@ public class Switcher.Widgets.SettingsDialog : Granite.Dialog {
             try {
                 keyfile.load_from_file (dest_path, GLib.KeyFileFlags.NONE);
                 keyfile.set_boolean ("Desktop Entry", "X-GNOME-Autostart-enabled", run_at_startup.get_active ());
-                keyfile.set_string ("Desktop Entry", "Exec", "com.github.jeysonflores.switcher" + " --no-gui");
+                keyfile.set_string ("Desktop Entry", "Exec", "flatpak run com.github.jeysonflores.switcher" + " --no-gui");
                 keyfile.save_to_file (dest_path);
             } catch (Error e) {
                 warning ("Error enabling autostart: %s", e.message);
