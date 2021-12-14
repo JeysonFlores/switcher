@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2021 Jeyson Antonio Flores Deras (https://github.com/JeysonFlores/switcher) -->
+<component type="desktop">
+	<id>com.github.jeysonflores.switcher</id>
+	<metadata_license>CC0-1.0</metadata_license>
+	<project_license>GPL-3.0+</project_license>
+	<name>Switcher</name>
+	<summary>Hash your files</summary>
+	<description>
+		<p>
+			Set default wallpapers for dark and light mode!
+		</p>
+		<p>
+			Features:
+		</p>
+		<ul>
+			<li>Persistent mode (keep the app running in the background)</li>
+			<li>Run at startup (run in the background automatically when the session starts)</li>
+		</ul>
+	</description>
+	<provides>
+		<binary>com.github.jeysonflores.switcher</binary>
+	</provides>
+	<releases>
+    <release version="1.0" date="2021-12-13">
+      <description>
+        <p>First Release</p>
+        <ul>
+            <li> Set default wallpapers for dark and light mode.</li>
+        </ul>
+      </description>
+    </release>
+	</releases>
+	<screenshots>
+		<screenshot type="default">
+			<image>https://raw.githubusercontent.com/JeysonFlores/switcher/main/data/screenshots/screenshot-1.png</image>
+		</screenshot>
+		<screenshot>
+			<image>https://raw.githubusercontent.com/JeysonFlores/switcher/main/data/screenshots/screenshot-2.png</image>
+		</screenshot>
+	</screenshots>
+	<developer_name>Jeyson Antonio Flores Deras</developer_name>
+	<launchable type="desktop-id">com.github.jeysonflores.switcher.desktop</launchable>
+	<url type="homepage">https://github.com/JeysonFlores/switcher</url>
+	<url type="bugtracker">https://github.com/JeysonFlores/switcher/issues</url>
+	<url type="help">https://github.com/JeysonFlores/switcher/issues</url>
+	<url type="translate">https://github.com/JeysonFlores/switcher/issues</url>
+	<update_contact>jeyson.flores@hotmail.com</update_contact>
+	<content_rating type="oars-1.1">
+		<content_attribute id="violence-cartoon">none</content_attribute>
+		<content_attribute id="violence-fantasy">none</content_attribute>
+		<content_attribute id="violence-realistic">none</content_attribute>
+		<content_attribute id="violence-bloodshed">none</content_attribute>
+		<content_attribute id="violence-sexual">none</content_attribute>
+		<content_attribute id="violence-desecration">none</content_attribute>
+		<content_attribute id="violence-slavery">none</content_attribute>
+		<content_attribute id="violence-worship">none</content_attribute>
+		<content_attribute id="drugs-alcohol">none</content_attribute>
+		<content_attribute id="drugs-narcotics">none</content_attribute>
+		<content_attribute id="drugs-tobacco">none</content_attribute>
+		<content_attribute id="sex-nudity">none</content_attribute>
+		<content_attribute id="sex-themes">none</content_attribute>
+		<content_attribute id="sex-homosexuality">none</content_attribute>
+		<content_attribute id="sex-prostitution">none</content_attribute>
+		<content_attribute id="sex-adultery">none</content_attribute>
+		<content_attribute id="sex-appearance">none</content_attribute>
+		<content_attribute id="language-profanity">none</content_attribute>
+		<content_attribute id="language-humor">none</content_attribute>
+		<content_attribute id="language-discrimination">none</content_attribute>
+		<content_attribute id="social-chat">none</content_attribute>
+		<content_attribute id="social-info">none</content_attribute>
+		<content_attribute id="social-audio">none</content_attribute>
+		<content_attribute id="social-location">none</content_attribute>
+		<content_attribute id="social-contacts">none</content_attribute>
+		<content_attribute id="money-purchasing">none</content_attribute>
+		<content_attribute id="money-gambling">none</content_attribute>
+	</content_rating>
+	<custom>
+		<value key="x-appcenter-color-primary">#efefef</value>
+		<value key="x-appcenter-color-primary-text">#508ff3</value>
+		<value key="x-appcenter-suggested-price">0</value>
+	</custom>
+	<kudos>
+		<kudo>HiDpiIcon</kudo>
+		<kudo>HighContrast</kudo>
+		<kudo>ModernToolkit</kudo>
+	</kudos>
+</component>
