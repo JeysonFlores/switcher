@@ -6,4 +6,12 @@
 	<gresource prefix="/com/github/jeysonflores/switcher">
 		<file alias="style-dark.css" compressed="true">style-dark.css</file>
 	</gresource>
+
+	<gresource prefix="/com/github/jeysonflores/switcher">
+		<file alias="default-light.png" compressed="true">default-light.png</file>
+	</gresource>
+
+	<gresource prefix="/com/github/jeysonflores/switcher">
+		<file alias="default-dark.png" compressed="true">default-dark.png</file>
+	</gresource>
 </gresources>

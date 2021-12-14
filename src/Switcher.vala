@@ -13,7 +13,7 @@ namespace Switcher {
         protected override void activate () {
             this.settings = new GLib.Settings ("com.github.jeysonflores.switcher");
 
-            var app_window = get_active_window ();
+            var app_window = (MainWindow) get_active_window ();
 
             if (app_window == null) {
                 app_window = new MainWindow (this);
@@ -25,6 +25,8 @@ namespace Switcher {
             } else {
                 if (!this.no_gui) {
                     this.release ();
+                    app_window.light_mode_view.refresh_wallpapers ();
+                    app_window.dark_mode_view.refresh_wallpapers ();
                     app_window.show_all ();
                     app_window.present ();
                 }

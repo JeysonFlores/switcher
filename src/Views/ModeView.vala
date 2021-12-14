@@ -1,6 +1,7 @@
 public class Switcher.Views.ModeView : Gtk.Box {
 
     private GLib.Settings settings;
+    private Gtk.Image image;
     public bool dark_mode { get; construct; }
 
     public ModeView (bool dark_mode) {
@@ -27,21 +28,11 @@ public class Switcher.Views.ModeView : Gtk.Box {
         }
         title_label.get_style_context ().add_class ("t1");
 
-        var key = this.dark_mode ? "dark-mode-wallpaper" : "light-mode-wallpaper";
-        
-        Gdk.Pixbuf? pixbuf = null;
-
-        if (FileUtils.test (this.settings.get_string (key), FileTest.EXISTS)) {
-            pixbuf = new Gdk.Pixbuf.from_file_at_size (this.settings.get_string (key), 400, 300);
-        } else {
-            // change for default image of /NOT SELECTED/
-            pixbuf = new Gdk.Pixbuf.from_file_at_size (this.settings.get_string ("dark-mode-wallpaper"), 400, 300);
-        }
-
-        var image = new Gtk.Image.from_pixbuf (pixbuf) {
+        image = new Gtk.Image () {
             margin_top = 20,
             halign = Gtk.Align.CENTER
         };
+        this.refresh_wallpapers ();
 
         var select_wallpaper = new Gtk.Button () {
             label = "Select image to set as wallpaper",
@@ -65,6 +56,8 @@ public class Switcher.Views.ModeView : Gtk.Box {
             var response = dialog.run ();
 
             if (response == Gtk.ResponseType.ACCEPT) {
+                var key = this.dark_mode ? "dark-mode-wallpaper" : "light-mode-wallpaper";
+
                 this.settings.set_string (key, dialog.get_filename ());
                 
                 var new_pixbuf = new Gdk.Pixbuf.from_file_at_size (dialog.get_filename (), 400, 300);
@@ -76,5 +69,20 @@ public class Switcher.Views.ModeView : Gtk.Box {
         pack_start (title_label, false, false, 0);
         pack_start (image, false, false, 0);
         pack_start (select_wallpaper, false, false, 0);
+    }
+
+    public void refresh_wallpapers() {
+        var key = this.dark_mode ? "dark-mode-wallpaper" : "light-mode-wallpaper";
+        
+        Gdk.Pixbuf? pixbuf = null;
+
+        if (FileUtils.test (this.settings.get_string (key), FileTest.EXISTS)) {
+            pixbuf = new Gdk.Pixbuf.from_file_at_size (this.settings.get_string (key), 400, 300);
+        } else {
+            var resource = ("/com/github/jeysonflores/switcher/" + (this.dark_mode ? "default-dark.png" : "default-light.png"));
+            pixbuf = new Gdk.Pixbuf.from_resource_at_scale(resource, 400, 400, true);
+        }
+
+        this.image.pixbuf = pixbuf;
     }
 }

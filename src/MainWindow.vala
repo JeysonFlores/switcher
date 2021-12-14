@@ -1,6 +1,8 @@
 public class Switcher.MainWindow: Hdy.Window {
 
     private GLib.Settings settings;
+    public Switcher.Views.ModeView light_mode_view;
+    public Switcher.Views.ModeView dark_mode_view;
 
     public MainWindow (Gtk.Application application) {
         Object (
@@ -58,8 +60,8 @@ public class Switcher.MainWindow: Hdy.Window {
             transition_type = Hdy.DeckTransitionType.SLIDE
         };
 
-        var light_mode_view = new Switcher.Views.ModeView (false);
-        var dark_mode_view = new Switcher.Views.ModeView (true);
+        light_mode_view = new Switcher.Views.ModeView (false);
+        dark_mode_view = new Switcher.Views.ModeView (true);
 
         deck.add (light_mode_view);
         deck.add (dark_mode_view);
