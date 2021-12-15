@@ -26,7 +26,7 @@ public class Switcher.Views.ModeView : Gtk.Box {
                 margin_top = 20
             };
         }
-        title_label.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
+        title_label.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
 
         image = new Gtk.Image () {
             margin_top = 20,
