@@ -33,7 +33,7 @@
     git clone https://github.com/JeysonFlores/switcher.git
     cd switcher
     flatpak-builder build com.github.jeysonflores.switcher.yml --user --install --force-clean
-    flatpak run build com.github.jeysonflores.switcher
+    flatpak run com.github.jeysonflores.switcher
   ```
 
 
