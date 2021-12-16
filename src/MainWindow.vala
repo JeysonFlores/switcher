@@ -30,12 +30,8 @@ public class Switcher.MainWindow: Hdy.Window {
         settings_button.get_style_context ().remove_class ("image-but");
 
         settings_button.clicked.connect(() => {
-            var dialog = new Switcher.Widgets.SettingsDialog (this);
-            dialog.show_all ();
-            dialog.add_button ("Close", Gtk.ResponseType.ACCEPT);
-            dialog.response.connect ((response_id) => {
-                dialog.destroy ();
-            });
+            var popover = new Switcher.Widgets.SettingsDialog (settings_button);
+            popover.show_all ();
         });
 
         var header_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);

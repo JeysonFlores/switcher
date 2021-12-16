@@ -1,30 +1,27 @@
-public class Switcher.Widgets.SettingsDialog : Granite.Dialog {
+public class Switcher.Widgets.SettingsDialog : Gtk.Popover {
 
     private GLib.Settings settings;
 
-    public SettingsDialog (Gtk.Window window) {
-        Object(
-            transient_for: window
+    public SettingsDialog (Gtk.Widget origin) {
+        Object (
+            relative_to: origin
         );
     }
     
     construct {
         this.settings = new GLib.Settings ("com.github.jeysonflores.switcher");
 
-        var title = new Gtk.Label ("Settings") {
-            halign = Gtk.Align.CENTER
+        const string run_at_startup_tooltip = "Set if run or not at startup";
+        
+        var run_at_startup_label = new Gtk.Label ("Run at startup:") {
+            halign = Gtk.Align.END,
+            tooltip_text = run_at_startup_tooltip
         };
-        title.get_style_context ().add_class ("keycap");
-
-        var run_at_startup_label = new Granite.HeaderLabel ("Run at startup");
-        var run_at_startup_description_label = new Gtk.Label ("Set if run or not at startup") {
-            halign = Gtk.Align.START
-        };
-        run_at_startup_description_label.get_style_context ().add_class ("description-label");
 
         var run_at_startup = new Gtk.Switch () {
             active = this.settings.get_boolean ("run-at-startup"),
-            halign = Gtk.Align.START
+            halign = Gtk.Align.START,
+            tooltip_text = run_at_startup_tooltip
         };
 
         run_at_startup.notify["active"].connect(() => {
@@ -58,16 +55,18 @@ public class Switcher.Widgets.SettingsDialog : Granite.Dialog {
                 warning ("Error enabling autostart: %s", e.message);
             }
         });
-
-        var persistent_mode_label = new Granite.HeaderLabel ("Persistent mode ");
-        var persistent_mode_description_label = new Gtk.Label ("It'll keep running after the app closes"){
-            halign = Gtk.Align.START
+        
+        const string persistent_mode_tooltip = "Keep running after the app closes";
+        
+        var persistent_mode_label = new Gtk.Label ("Persistent mode:") {
+            halign = Gtk.Align.END,
+            tooltip_text = persistent_mode_tooltip
         };
-        persistent_mode_description_label.get_style_context ().add_class ("description-label");
-
+        
         var persistent_mode = new Gtk.Switch () {
             active = this.settings.get_boolean ("persistent"),
-            halign = Gtk.Align.START
+            halign = Gtk.Align.START,
+            tooltip_text = persistent_mode_tooltip
         };
 
         persistent_mode.notify["active"].connect(() => {
@@ -77,18 +76,15 @@ public class Switcher.Widgets.SettingsDialog : Granite.Dialog {
         var layout = new Gtk.Grid () {
             orientation = Gtk.Orientation.VERTICAL,
             margin = 12,
-            margin_top = 0,
-            row_spacing = 12
+            column_spacing = 12,
+            row_spacing = 6
         };
+        
+        layout.attach (run_at_startup_label, 0, 0);
+        layout.attach (run_at_startup, 1, 0);
+        layout.attach (persistent_mode_label, 0, 1);
+        layout.attach (persistent_mode, 1, 1);
 
-        layout.add (title);
-        layout.add (run_at_startup_label);
-        layout.add (run_at_startup_description_label);
-        layout.add (run_at_startup);
-        layout.add (persistent_mode_label);
-        layout.add (persistent_mode_description_label);
-        layout.add (persistent_mode);
-
-        this.get_content_area ().add (layout);
+        this.add (layout);
     }
 }
