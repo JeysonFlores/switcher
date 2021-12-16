@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
 	<gresource prefix="/com/github/jeysonflores/switcher">
-		<file alias="style.css" compressed="true">style.css</file>
-	</gresource>
-	<gresource prefix="/com/github/jeysonflores/switcher">
-		<file alias="style-dark.css" compressed="true">style-dark.css</file>
-	</gresource>
-
-	<gresource prefix="/com/github/jeysonflores/switcher">
 		<file alias="default-light.png" compressed="true">default-light.png</file>
 	</gresource>
 

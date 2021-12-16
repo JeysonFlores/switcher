@@ -139,10 +139,8 @@ public class Switcher.MainWindow: Hdy.Window {
 
         if (flag) {
             gtk_settings.gtk_application_prefer_dark_theme = (true);
-            css_provider.load_from_resource ("/com/github/jeysonflores/switcher/style-dark.css");
         } else {
             gtk_settings.gtk_application_prefer_dark_theme = (false);
-            css_provider.load_from_resource ("/com/github/jeysonflores/switcher/style.css");
         }
 
         Gtk.StyleContext.add_provider_for_screen (
