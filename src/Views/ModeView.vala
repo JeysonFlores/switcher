@@ -44,6 +44,9 @@ public class Switcher.Views.ModeView : Gtk.Box {
 
         select_wallpaper.clicked.connect(() => {
             var dialog = new Gtk.FileChooserNative ("Select an image", null, Gtk.FileChooserAction.OPEN, "Select", "Cancel");
+            dialog.set_current_folder ("/usr/share/backgrounds/");
+            dialog.set_current_folder_uri ("/usr/share/backgrounds/");
+            dialog.set_uri ("/usr/share/backgrounds/");
 
             var filter = new Gtk.FileFilter ();
             filter.add_pattern ("*.jpg");
@@ -52,7 +55,7 @@ public class Switcher.Views.ModeView : Gtk.Box {
             filter.add_pattern ("*.svg");
 
             dialog.add_filter (filter);
-
+            
             var response = dialog.run ();
 
             if (response == Gtk.ResponseType.ACCEPT) {

@@ -41,13 +41,21 @@ namespace Switcher {
 
 
             granite_settings.notify["prefers-color-scheme"].connect (() => {
+                var mode  = granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK ? "Dark Mode" : "Light Mode";
+
+                print ("Color Style has changed to " + mode + "\n");
 
                 var wallpaper_location = granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK ? settings.get_string ("dark-mode-wallpaper") : settings.get_string ("light-mode-wallpaper");
 
                 if (FileUtils.test (wallpaper_location, FileTest.EXISTS)) {
+
+                    print ("The file " + wallpaper_location + " exists\n");
                     File file = File.new_for_path (wallpaper_location);
 
                     App.Contractor.set_wallpaper_by_contract (file);
+                    print ("Wallpaper setted\n");
+                } else {
+                    print ("The file " + wallpaper_location + " doesn't exist\n");
                 }
             });
         }
