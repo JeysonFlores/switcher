@@ -19,6 +19,7 @@
 
 ![Screenshot](https://github.com/JeysonFlores/switcher/blob/main/data/screenshots/screenshot-1.png)
 ![Screenshot](https://github.com/JeysonFlores/switcher/blob/main/data/screenshots/screenshot-2.png) 
+![Screenshot](https://github.com/JeysonFlores/switcher/blob/main/data/screenshots/screenshot-3.png) 
 
 # Dependencies
     - 'glib-2.0'

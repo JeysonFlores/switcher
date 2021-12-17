@@ -38,6 +38,9 @@
 		<screenshot>
 			<image>https://raw.githubusercontent.com/JeysonFlores/switcher/main/data/screenshots/screenshot-2.png</image>
 		</screenshot>
+		<screenshot>
+			<image>https://raw.githubusercontent.com/JeysonFlores/switcher/main/data/screenshots/screenshot-3.png</image>
+		</screenshot>
 	</screenshots>
 	<developer_name>Jeyson Antonio Flores Deras</developer_name>
 	<launchable type="desktop-id">com.github.jeysonflores.switcher.desktop</launchable>
