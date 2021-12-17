@@ -17,8 +17,8 @@
   </a>
 </p>
 
-| ![Screenshot](https://github.com/JeysonFlores/switcher/blob/main/data/screenshots/screenshot-1.png) | ![Screenshot](https://github.com/JeysonFlores/switcher/blob/main/data/screenshots/screenshot-2.png) |
-
+![Screenshot](https://github.com/JeysonFlores/switcher/blob/main/data/screenshots/screenshot-1.png)
+![Screenshot](https://github.com/JeysonFlores/switcher/blob/main/data/screenshots/screenshot-2.png) 
 
 # Dependencies
     - 'glib-2.0'
@@ -36,6 +36,6 @@
     flatpak run com.github.jeysonflores.switcher
   ```
 
-
 # Acknowledgements
+   - Thanks to [Lukas Orsvärn](https://github.com/lukors) for his contributions to Code, Design and Testing. 
    - Thanks to the Elementary's Community Discord Server for the original idea.
