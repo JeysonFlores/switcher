@@ -17,7 +17,7 @@
         },
         {
             "name": "Build Flatpak",
-            "script": "flatpak-builder build com.github.jeysonflores.switcher.json --user --install --force-clean",
+            "script": "flatpak-builder build com.github.jeysonflores.switcher.yml --user --install --force-clean",
             "description": "Build project as flatpak"
         },
         {

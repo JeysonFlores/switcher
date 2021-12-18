@@ -34,6 +34,7 @@ executable(
     'src/Views/ModeView.vala',
     'src/Widgets/SettingsDialog.vala',
     'src/Utils/ContractorManager.vala',
+    'src/Utils/PortalManager.vala',
     asresources,
     c_args: c_args,
     dependencies: [

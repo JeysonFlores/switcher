@@ -25,6 +25,8 @@ public class Switcher.Widgets.SettingsDialog : Gtk.Popover {
         };
 
         run_at_startup.notify["active"].connect(() => {
+
+            ask_for_background ();
             
             this.settings.set_boolean ("run-at-startup", run_at_startup.get_active ());
 
@@ -86,5 +88,28 @@ public class Switcher.Widgets.SettingsDialog : Gtk.Popover {
         layout.attach (persistent_mode, 1, 1);
 
         this.add (layout);
+    }
+
+    private void ask_for_background () {
+        try {
+            var portal = PortalManager.Background.get ();
+            string[] cmd = { "com.github.jeysonflores.switcher", "--no-gui" };
+
+            var options = new HashTable<string, Variant> (str_hash, str_equal);
+            options["handle_token"] = PortalManager.generate_token ();
+            options["reason"] = _("Switcher wants to initialize with the session");
+            options["commandline"] = cmd;
+            options["dbus-activatable"] = false;
+            options["autostart"] = true;
+
+            // TODO: handle response
+            try {
+                portal.request_background ("Switcher", options);
+            } catch (Error e) {
+                warning ("couldnt ask for background access: %s", e.message);
+            }
+        } catch (Error e) {
+            warning ("cloudnt connect to portal: %s", e.message);
+        }
     }
 }
