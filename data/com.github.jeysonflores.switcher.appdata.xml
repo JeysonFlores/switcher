@@ -5,7 +5,7 @@
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>GPL-3.0+</project_license>
 	<name>Switcher</name>
-	<summary>Hash your files</summary>
+	<summary>Change your wallpaper according to you desktop mode!</summary>
 	<description>
 		<p>
 			Set default wallpapers for dark and light mode!
@@ -22,7 +22,7 @@
 		<binary>com.github.jeysonflores.switcher</binary>
 	</provides>
 	<releases>
-    <release version="1.0" date="2021-12-13">
+    <release version="1.0.0" date="2021-12-18">
       <description>
         <p>First Release</p>
         <ul>
