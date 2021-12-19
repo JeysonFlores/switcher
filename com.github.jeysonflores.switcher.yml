@@ -1,7 +1,7 @@
 app-id: com.github.jeysonflores.switcher
 
 runtime: io.elementary.Platform
-runtime-version: '6'
+runtime-version: '6.1'
 sdk: io.elementary.Sdk
 
 command: com.github.jeysonflores.switcher
@@ -10,7 +10,6 @@ finish-args:
   - '--share=ipc'
   - '--socket=fallback-x11'
   - '--socket=wayland'
-  - '--system-talk-name=org.freedesktop.Accounts'
   - '--talk-name=org.elementary.Contractor'
   - '--filesystem=~/.config/autostart'
   
