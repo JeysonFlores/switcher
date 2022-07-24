@@ -1,7 +1,7 @@
 namespace Switcher {
-    
+
     public class Application : Gtk.Application {
-        
+
         public bool no_gui;
         public GLib.Settings settings;
 
@@ -9,7 +9,7 @@ namespace Switcher {
             Object (application_id: "com.github.jeysonflores.switcher",
             flags: ApplicationFlags.HANDLES_COMMAND_LINE);
         }
-        
+
         protected override void activate () {
             this.settings = new GLib.Settings ("com.github.jeysonflores.switcher");
 
@@ -40,16 +40,19 @@ namespace Switcher {
                 print ("");
 
 
-            granite_settings.notify["prefers-color-scheme"].connect (() => {
+            set_wallpaper (granite_settings.prefers_color_scheme);
 
-                var wallpaper_location = granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK ? settings.get_string ("dark-mode-wallpaper") : settings.get_string ("light-mode-wallpaper");
+            granite_settings.notify["prefers-color-scheme"].connect (() => set_wallpaper (granite_settings.prefers_color_scheme));
+        }
 
-                if (FileUtils.test (wallpaper_location, FileTest.EXISTS)) {
-                    File file = File.new_for_path (wallpaper_location);
+        private void set_wallpaper (Granite.Settings.ColorScheme color_scheme) {
+            var wallpaper_location = color_scheme == Granite.Settings.ColorScheme.DARK ? settings.get_string ("dark-mode-wallpaper") : settings.get_string ("light-mode-wallpaper");
 
-                    App.Contractor.set_wallpaper_by_contract (file);
-                }
-            });
+            if (FileUtils.test (wallpaper_location, FileTest.EXISTS)) {
+                File file = File.new_for_path (wallpaper_location);
+
+                App.Contractor.set_wallpaper_by_contract (file);
+            }
         }
 
         public override int command_line (ApplicationCommandLine command_line) {
@@ -84,12 +87,12 @@ namespace Switcher {
 
             return 0;
         }
-                
+
         public static int main (string[] args) {
-            
+
             var app = new Application ();
-            
-            return app.run(args);   
+
+            return app.run(args);
         }
     }
 }
